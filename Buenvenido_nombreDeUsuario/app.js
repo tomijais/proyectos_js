@@ -5,7 +5,7 @@
 // mostrar toda la información junta en un campo de texto
 // Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
 
-
+document.querySelector('#ingresar').onclick= function(){
 
 const nombreUsuario = String(document.querySelector('#nombre-usuario').value);
 const segundoNombreUsuario = document.querySelector('#segundo-nombre-usuario').value;
@@ -13,6 +13,6 @@ const apellidoUsuario = document.querySelector('#apellido-usuario').value;
 const edadUsuario = document.querySelector('#edad-usuario').value;
 
 
-document.querySelector('#ingresar').onclick= function(){
-    document.querySelector("h1").innerText = nombreUsuario
+    document.querySelector("h1").innerText = `Bienvenido ${nombreUsuario}`
+    document.querySelector("#resultado").innerText = `Hola ${nombreUsuario}`
 }
