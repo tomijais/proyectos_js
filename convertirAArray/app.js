@@ -30,13 +30,13 @@ let minimo = Math.min(...arrayMapeado)
 
 
 
-    let contadorRepeticiones = 0;
-    let contadorNumeroActual = 0
+    let mayorCantidadRepeticiones = 0;
+
     let masFrecuente;
-    let numeroActual;
+     
 for (let i = 0; i < arrayMapeado.length; i++) {
-    numeroActual = arrayMapeado[i];
-    
+    let numeroActual = arrayMapeado[i];
+    let contadorNumeroActual = 0    
     
     for (let i = 0; i < arrayMapeado.length; i++) {
         
@@ -46,8 +46,8 @@ for (let i = 0; i < arrayMapeado.length; i++) {
 
     }
 
-    if(contadorNumeroActual>contadorRepeticiones){
-        contadorRepeticiones = contadorNumeroActual;
+    if(contadorNumeroActual>mayorCantidadRepeticiones){
+        mayorCantidadRepeticiones = contadorNumeroActual;
         masFrecuente = numeroActual
         
     }
