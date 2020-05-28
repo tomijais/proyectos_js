@@ -42,3 +42,12 @@ document.querySelector('#limpiar').onclick = function(){
 
     document.querySelector("strong").innerText = `Aqui se mostrara la duracion total de los videos`;
 }
+
+
+if(segundosVideos >= 60){
+  minutosVideos++
+  segundosVideos = segundosVideos - 60
+} else if(minutosVideos >= 60){
+  horasVideos++
+  minutosVideos = minutosVideos - 60
+}
