@@ -1,0 +1,64 @@
+<!--
+TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
+Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
+Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad, la menor edad y el promedio del grupo familiar.
+Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tarea1- Clase 6</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+<body>
+    <form >
+        <label for="numero-familiares">Ingrese el numero de personas en el grupo familiar:</label>
+        <input type="number" id="numero-familiares"/>
+        <button type="button" id="ingresar-numero-familiares">Ingresar</button>
+        <button type="button" id="boton-calcular">Calcular Edades</button>
+        <button type="button" id="empezar-de-nuevo">Empezar de nuevo</button>
+        <button type="button" id="agregar">Agregar</button>
+        <button type="button" id="quitar">Quitar</button>
+        <button type="button" id="calcular-salario">Calcular Salario Anual</button>
+        <br/>
+        <br/>
+        <br/>
+
+    </form>
+
+    <br/>
+    <br/>
+    <em id="menor-edad">El personas mas pequeña tiene:</em>
+    <br/>
+    <br/>
+    <em id="promedio-edad">La edad promedio es promedio es:</em>
+    <br/>
+    <br/>
+    <em id="mayor-edad">El personas mas grande tiene:</em>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <em id="menor-salario">El salario mas pequeño es:</em>
+    <br/>
+    <br/>
+    <em id="promedio-salario">El promedio salarial es:</em>
+    <br/>
+    <br/>
+    <em id="mayor-salario">El salario mas grande es:</em>
+    <br/>
+    <br/>
+    <em id="promedio-salario-mensual">El promedio salarial mensual es:</em>
+
+
+        <script src='app.js'></script>
+</body>
+</html>

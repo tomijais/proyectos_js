@@ -25,7 +25,7 @@ let arrayMapeado = miArray.map(function(elemento){
 
     
 let maximo = Math.max(...arrayMapeado);
-let minimo = Math.min(...arrayMapeado)
+let minimo = Math.min(...arrayMapeado);
 
 
 
