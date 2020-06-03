@@ -31,7 +31,7 @@ function agregarFamiliares ($numeroFamiliares){
         $div.className="familiar";
         
         const $label = document.createElement('label');
-        $label.innerText = `Integrante ${cantidadFamiliares + 1}`;
+        $label.innerText = `Edad del integrante ${cantidadFamiliares + 1}`;
         $label.className = "labelIntegrantes"
         
     
