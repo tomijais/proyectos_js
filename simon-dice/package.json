@@ -1,0 +1,15 @@
+{
+  "name": "simon-dice",
+  "version": "1.0.0",
+  "description": "Ejercicio de simon dice para r/argentina programa",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap": "^4.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
