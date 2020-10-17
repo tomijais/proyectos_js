@@ -1,78 +1,102 @@
-  const $cuadro1 = document.querySelector("#cuadro-1");
-  const $cuadro2 = document.querySelector("#cuadro-2");
-  const $cuadro3 = document.querySelector("#cuadro-3");
-  const $cuadro4 = document.querySelector("#cuadro-4");
+const $cuadro1 = document.querySelector("#cuadro-1");
+const $cuadro2 = document.querySelector("#cuadro-2");
+const $cuadro3 = document.querySelector("#cuadro-3");
+const $cuadro4 = document.querySelector("#cuadro-4");
 
-  const $contadorRonda = document.querySelector("#contador");
+const $contadorRonda = document.querySelector("#contador");
 
-  const $buttonSR = document.querySelector('.button-start')
+const $buttonSR = document.querySelector(".button-start");
 
-  let contadorRonda = 0;
-  let ordenJugada = [];
+let ronda = 0;
+let ordenMaquina = [];
+let ordenJugador = [];
+
+$buttonSR.onclick = comenzarJuego;
+
+function comenzarJuego() {
+  reiniciarTodo()
+   manejarRonda()
+   
+}
+
+function reiniciarTodo() {
+  let ronda = 0;
+  let ordenMaquina = [];
   let ordenJugador = [];
-  
+}
 
-  $buttonSR.addEventListener('click', e => {
-    cambiarBoton();
-    nuevaRonda();
-    empezarRonda();
-  })
+function manejarRonda() {
+  ordenMaquina.push(obtenerCuadroAleatorio());
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // SUMA UNA RONDA Y LA MUESTRA  
-  function nuevaRonda() {
-    contadorRonda++;
-    $contadorRonda.value = `Ronda ${contadorRonda}`;
-  }
-  // TE DEVUELVE UN CUADRO ALEATOREO  
-  function obtenerCuadroAleatoreo() {
-    const $cuadros = document.querySelectorAll('.cuadro');
-    const indice = Math.floor(Math.random() * $cuadros.length);
-    return $cuadros[indice];
-  }
+  const RETRASO_TURNO_JUGADOR = (ordenMaquina.length + 1) * 1000;
 
-  function empezarRonda(){
-    ordenJugada.push(obtenerCuadroAleatoreo());
-    ordenJugada.forEach(function(cuadro){
-      resaltar(cuadro);
-      generarOrdenUsuario()
-    })
-  }
-  // RESALTA EL CUADRO SELECCIONADO
-  function resaltar(cuadro) {
-    cuadro.style.opacity = 1;
+  ordenMaquina.forEach(function($cuadro, index) {
+    const RETRASO_MS = (index + 1) * 1000;
     setTimeout(function() {
-      cuadro.style.opacity = 0.5;
-    }, 500);
-  }
-// CAMBIA EL BOTON DE START A RESET, SI ES RESET REINICIA TODO
-  function cambiarBoton() {
-    if($buttonSR.innerHTML == "Start"){
-      $buttonSR.innerHTML = "Reset"
-    }else{
-      $buttonSR.innerHTML = "Start";
-      perdiste()
-    }
-  }
-  function perdiste(){
-    contadorRonda = 0
-    ordenJugada = []
-    ordenJugador = []
+      resaltar($cuadro);
+    }, RETRASO_MS);
+  });
+
+  setTimeout(function() {
+  //  actualizarEstado('Turno del jugador');
+    desbloquearInputUsuario();
+  }, RETRASO_TURNO_JUGADOR);
+
+  ordenJugador = [];
+  ronda++;
+  actualizarNumeroRonda(ronda);
+
+}
+
+function manejarInputUsuario(e) {
+  const CuadroActual = e.target;
+  console.log(CuadroActual);
+  resaltar(CuadroActual);
+  ordenJugador.push(CuadroActual);
+
+  const CuadroActualDeLaMaquina = ordenMaquina[ordenJugador.length - 1];
+  if (CuadroActual.id !== CuadroActualDeLaMaquina.id) {
+    perder();
+    return;
   }
 
-
-  function generarOrdenUsuario(e){
-    let cuadro = e.target
-    console.log(cuadro);
-    resaltar(cuadro);
+  if (ordenJugador.length === ordenMaquina.length) {
+    bloquearInputUsuario();
+    setTimeout(manejarRonda, 1000);
   }
+}
+
+
+function obtenerCuadroAleatorio() {
+  const $cuadros = document.querySelectorAll('.cuadro');
+  const cuadro = Math.floor(Math.random() * $cuadros.length);
+  return $cuadros[cuadro];
+}
+
+
+function resaltar(CuadroActual) {
+  CuadroActual.style.opacity = 1;
+  setTimeout(function() {
+    CuadroActual.style.opacity = 0.5;
+  }, 500);
+}
+
+function actualizarNumeroRonda(ronda) {
+  $contadorRonda.innerHTML = `Ronda ${ronda}`;
+}
+
+
+
+function bloquearInputUsuario() {
+  const todosLosCuadros = document.querySelectorAll('.cuadro')
+  todosLosCuadros.forEach(function() {
+    // Si saco lo dejo vacio no puede recibir el evento del onclick, entonces el e.target no funciona
+  });
+}
+
+function desbloquearInputUsuario() {
+  const todosLosCuadros = document.querySelectorAll('.cuadro')
+  todosLosCuadros.forEach(function(unCuadro) {
+    unCuadro.onclick = manejarInputUsuario;
+  });
+}
